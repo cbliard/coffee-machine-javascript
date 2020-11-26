@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "cucumberjs": "node_modules/.bin/cucumber-js",
+    "test": "node_modules/.bin/cucumber-js --format=message:messages.ndjson --publish-quiet",
+    "push-results": "[ -z \"$PROJECT_ACCESS_TOKEN\" ] && echo \"Error: missing PROJECT_ACCESS_TOKEN from CucumberStudio project to push results\" || echo curl -X POST -F messages=@messages.json https://studio.cucumber.io/cucumber_project/results -H \"project-access-token: $PROJECT_ACCESS_TOKEN\" -H \"provider: github\" -H \"repo: cbliard/coffee-machine\" -H \"branch: master\" -H \"revision: $(git rev-parse --short HEAD)\""
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.0.0-rc.0"
+  }
+}
