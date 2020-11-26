@@ -49,7 +49,8 @@ You can use [CucumberStudio](https://cucumber.io/tools/cucumberstudio/) "BDD wit
 
       Command is:
 
-          PROJECT_ACCESS_TOKEN=abcd1234 COMMIT_HASH=$(git rev-parse --short HEAD) npm run push-results
+          export PROJECT_ACCESS_TOKEN=abcd1234 COMMIT_HASH=$(git rev-parse HEAD)
+          npm run push-results
 
     - You should see the results being displayed in CucumberStudio.
 
