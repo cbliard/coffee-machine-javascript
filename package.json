@@ -2,7 +2,7 @@
   "scripts": {
     "cucumberjs": "node_modules/.bin/cucumber-js",
     "test": "node_modules/.bin/cucumber-js --format=message:messages.ndjson --publish-quiet",
-    "push-results": "[ -z \"$PROJECT_ACCESS_TOKEN\" ] && echo \"Error: missing PROJECT_ACCESS_TOKEN from CucumberStudio project to push results\" || curl -X POST https://studio.cucumber.io/cucumber_project/results -F messages=@messages.ndjson -H \"project-access-token: $PROJECT_ACCESS_TOKEN\" -H \"provider: github\" -H \"repo: cbliard/coffee-machine-javascript\" -H \"branch: master\" -H \"revision: $COMMIT_HASH\""
+    "push-results": "[ -z \"$PROJECT_ACCESS_TOKEN\" ] && echo \"Error: missing PROJECT_ACCESS_TOKEN from CucumberStudio project to push results\" || curl -X POST https://studio.cucumber.io/cucumber_project/results -F messages=@messages.ndjson -H \"project-access-token: $PROJECT_ACCESS_TOKEN\" -H \"provider: github\" -H \"repo: cbliard/coffee-machine-javascript\" -H \"branch: main\" -H \"revision: $COMMIT_HASH\""
   },
   "devDependencies": {
     "@cucumber/cucumber": "^7.0.0-rc.0"
