@@ -45,9 +45,11 @@ You can use [CucumberStudio](https://cucumber.io/tools/cucumberstudio/) "BDD wit
             -H "branch: master" \
             -H "revision: <commit_hash>"
 
-      This command is defined in `package.json` as a script. Run `npm run push-results` to run it. You just need to define `PROJECT_ACCESS_TOKEN` environment variable:
+      This command is defined in `package.json` as a script. Run `npm run push-results` to run it. You need to define two environment variables: `PROJECT_ACCESS_TOKEN`, the unique access token relative to your project, and `COMMIT_HASH`, which is the git commit hash referring the version features have been executed on.
 
-          PROJECT_ACCESS_TOKEN=abcd1234 npm run publish-results
+      Command is:
+
+          PROJECT_ACCESS_TOKEN=abcd1234 COMMIT_HASH=$(git rev-parse --short HEAD) npm run push-results
 
     - You should see the results being displayed in CucumberStudio.
 
