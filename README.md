@@ -41,15 +41,20 @@ You can use [CucumberStudio](https://cucumber.io/tools/cucumberstudio/) "BDD wit
             -F messages=@<path to your result file> \
             -H "project-access-token: <your-project-access-token>" \
             -H "provider: github" \
-            -H "repo: cbliard/coffee-machine-back" \
-            -H "branch: master" \
+            -H "repo: <repository_name>" \
+            -H "branch: main" \
             -H "revision: <commit_hash>"
 
-      This command is defined in `package.json` as a script. Run `npm run push-results` to run it. You need to define two environment variables: `PROJECT_ACCESS_TOKEN`, the unique access token relative to your project, and `COMMIT_HASH`, which is the git commit hash referring the version features have been executed on.
+      This command is defined in `package.json` as a script. Run `npm run push-results` to run it. You will need to define some environment variables to properly fill in the necessary information:
+        - `PROJECT_ACCESS_TOKEN`: the unique access token relative to your project
+        - `REPOSITORY_NAME`: the repository name, like `cucumber/coffee-machine-javascript`
+        - `COMMIT_HASH`: the git commit hash referring the version actually tested
 
       Command is:
 
-          export PROJECT_ACCESS_TOKEN=abcd1234 COMMIT_HASH=$(git rev-parse HEAD)
+          export PROJECT_ACCESS_TOKEN=abcd1234
+          export REPOSITORY_NAME=yourGitHubName/coffee-machine-javascript
+          export COMMIT_HASH=$(git rev-parse HEAD)
           npm run push-results
 
     - You should see the results being displayed in CucumberStudio.
