@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ -n "$1" ]; then
+  npm_test_exit_code=$1
+fi
+
 fail=0
 if [ -z "$CS_PROJECT_ACCESS_TOKEN" ]; then
   echo "Error: missing CS_PROJECT_ACCESS_TOKEN from CucumberStudio project to push results"
@@ -40,3 +44,7 @@ curl \
   -H "revision: $COMMIT_HASH"
 { set +x; } 2>/dev/null
 echo
+
+if [ -n "$npm_test_exit_code" ]; then
+  exit $npm_test_exit_code
+fi
