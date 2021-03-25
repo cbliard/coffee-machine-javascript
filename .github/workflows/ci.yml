@@ -19,6 +19,8 @@ jobs:
     - run: npm ci
     - run: npm test
       if: env.CS_PROJECT_ACCESS_TOKEN == null
+      env:
+          CS_PROJECT_ACCESS_TOKEN: ${{ secrets.CS_PROJECT_ACCESS_TOKEN }}
     - name: 'Run npm test and push results to CucumberStudio'
       if: env.CS_PROJECT_ACCESS_TOKEN != null
       run: npm run push-results
