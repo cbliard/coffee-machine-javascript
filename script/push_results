@@ -18,6 +18,10 @@ if [ -z "$COMMIT_HASH" ]; then
   echo "COMMIT_HASH set to current HEAD ($COMMIT_HASH)"
 fi
 
+if [ -z "$COMMIT_BRANCH" -a -n "$GITHUB_REF" ]; then
+  export COMMIT_BRANCH="${GITHUB_REF##*/}"
+fi
+
 if [ -z "$COMMIT_BRANCH" ]; then
   echo "Warning: missing COMMIT_BRANCH from CucumberStudio project to push results"
   export COMMIT_BRANCH=$(git rev-parse --abbrev-ref $COMMIT_HASH)

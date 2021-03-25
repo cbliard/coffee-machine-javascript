@@ -18,3 +18,10 @@ jobs:
         node-version: '12'
     - run: npm ci
     - run: npm test
+    - name: 'push results to CucumberStudio'
+      if: ${{ env.PROJECT_ACCESS_TOKEN }}
+      run: npm push-results
+      env:
+          REPOSITORY_NAME: ${{github.repository}}
+          COMMIT_HASH: ${{github.sha}}
+          GITHUB_REF: ${{github.ref}}
