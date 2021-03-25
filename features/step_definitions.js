@@ -126,3 +126,8 @@ Then(/^settings should be:$/, function (__datatable, callback) {
     assert.deepEqual(__datatable.raw(), settings);
     callback();
 });
+
+Then('a warm coffee should be served', function () {
+    // Write code here that turns the phrase above into concrete actions
+    return true;
+});
