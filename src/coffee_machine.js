@@ -28,7 +28,7 @@ exports.CoffeeMachine = function CoffeeMachine () {
       tank: 'Remplir reservoir',
       beans: 'Ajouter grains',
       grounds: 'Vider marc',
-      ready: 'Je suis Pret',
+      ready: 'Pret',
       settings: 'Configurer:\n - 1: durete de l eau\n - 2: mouture',
       descale: 'Detartrage requisd'
     }
