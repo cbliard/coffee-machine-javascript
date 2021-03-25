@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Check features with Cucumber and push to CucumberStudio
 
 on:
   push:
@@ -18,7 +18,8 @@ jobs:
         node-version: '12'
     - run: npm ci
     - run: npm test
-    - name: 'push results to CucumberStudio'
+      if: env.CS_PROJECT_ACCESS_TOKEN == null
+    - name: 'Run npm test and push results to CucumberStudio'
       if: env.CS_PROJECT_ACCESS_TOKEN != null
       run: npm run push-results
       env:
