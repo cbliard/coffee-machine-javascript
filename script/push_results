@@ -18,6 +18,12 @@ if [ -z "$COMMIT_HASH" ]; then
   echo "COMMIT_HASH set to current HEAD ($COMMIT_HASH)"
 fi
 
+if [ -z "$COMMIT_BRANCH" ]; then
+  echo "Warning: missing COMMIT_BRANCH from CucumberStudio project to push results"
+  export COMMIT_BRANCH=$(git rev-parse --abbrev-ref $COMMIT_HASH)
+  echo "COMMIT_BRANCH set to current HEAD ($COMMIT_BRANCH)"
+fi
+
 set -x
 curl \
   -X POST \
@@ -26,7 +32,7 @@ curl \
   -H "project-access-token: $PROJECT_ACCESS_TOKEN" \
   -H "provider: github" \
   -H "repo: $REPOSITORY_NAME" \
-  -H "branch: main" \
+  -H "branch: $COMMIT_BRANCH" \
   -H "revision: $COMMIT_HASH"
 { set +x; } 2>/dev/null
 echo

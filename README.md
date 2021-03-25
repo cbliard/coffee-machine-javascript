@@ -15,7 +15,7 @@ You can use [CucumberStudio](https://cucumber.io/tools/cucumberstudio/) "BDD wit
     - Connect the repository you have forked
     - You now have your features nicely exposed on CucumberStudio
 
-      Congrats! 🎉
+    Congrats! 🎉
 
 2. Push execution results to CucumberStudio
     - Ensure you have nodejs and npm installed
@@ -42,20 +42,24 @@ You can use [CucumberStudio](https://cucumber.io/tools/cucumberstudio/) "BDD wit
             -H "project-access-token: <your-project-access-token>" \
             -H "provider: github" \
             -H "repo: <repository_name>" \
-            -H "branch: main" \
+            -H "branch: <commit_branch>" \
             -H "revision: <commit_hash>"
 
       This command is defined in `package.json` as a script. Run `npm run push-results` to run it. You will need to define some environment variables to properly fill in the necessary information:
         - `PROJECT_ACCESS_TOKEN`: the unique access token relative to your project
         - `REPOSITORY_NAME`: the repository name, like `cucumber/coffee-machine-javascript`
         - `COMMIT_HASH`: the git commit hash referring the version actually tested
+        - `COMMIT_BRANCH`: the git commit branch referring the version actually tested
 
       Command is:
 
           export PROJECT_ACCESS_TOKEN=abcd1234
           export REPOSITORY_NAME=yourGitHubName/coffee-machine-javascript
           export COMMIT_HASH=$(git rev-parse HEAD)
+          export COMMIT_BRANCH=$(git rev-parse --abbrev-ref $COMMIT_HASH)
           npm run push-results
+
+      Note: you can also run `npm run push-results` which does the same, as defined in `package.json`.
 
     - You should see the results being displayed in CucumberStudio.
 
