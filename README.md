@@ -46,14 +46,14 @@ You can use [CucumberStudio](https://cucumber.io/tools/cucumberstudio/) "BDD wit
             -H "revision: <commit_hash>"
 
       This command is defined in `package.json` as a script. Run `npm run push-results` to run it. You will need to define some environment variables to properly fill in the necessary information:
-        - `PROJECT_ACCESS_TOKEN`: the unique access token relative to your project
+        - `CS_PROJECT_ACCESS_TOKEN`: the unique access token relative to your project
         - `REPOSITORY_NAME`: the repository name, like `cucumber/coffee-machine-javascript`
         - `COMMIT_HASH`: the git commit hash referring the version actually tested
         - `COMMIT_BRANCH`: the git commit branch referring the version actually tested
 
       Command is:
 
-          export PROJECT_ACCESS_TOKEN=abcd1234
+          export CS_PROJECT_ACCESS_TOKEN=abcd1234
           export REPOSITORY_NAME=yourGitHubName/coffee-machine-javascript
           export COMMIT_HASH=$(git rev-parse HEAD)
           export COMMIT_BRANCH=$(git rev-parse --abbrev-ref $COMMIT_HASH)

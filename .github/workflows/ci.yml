@@ -19,7 +19,7 @@ jobs:
     - run: npm ci
     - run: npm test
     - name: 'push results to CucumberStudio'
-      if: ${{ env.PROJECT_ACCESS_TOKEN }}
+      if: ${{ env.CS_PROJECT_ACCESS_TOKEN }}
       run: npm push-results
       env:
           REPOSITORY_NAME: ${{github.repository}}

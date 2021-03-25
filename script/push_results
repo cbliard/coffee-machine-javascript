@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 fail=0
-if [ -z "$PROJECT_ACCESS_TOKEN" ]; then
-  echo "Error: missing PROJECT_ACCESS_TOKEN from CucumberStudio project to push results"
+if [ -z "$CS_PROJECT_ACCESS_TOKEN" ]; then
+  echo "Error: missing CS_PROJECT_ACCESS_TOKEN from CucumberStudio project to push results"
   fail=1
 fi
 if [ -z "$REPOSITORY_NAME" ]; then
@@ -33,7 +33,7 @@ curl \
   -X POST \
   https://studio.cucumber.io/cucumber_project/results \
   -F messages=@messages.ndjson \
-  -H "project-access-token: $PROJECT_ACCESS_TOKEN" \
+  -H "project-access-token: $CS_PROJECT_ACCESS_TOKEN" \
   -H "provider: github" \
   -H "repo: $REPOSITORY_NAME" \
   -H "branch: $COMMIT_BRANCH" \
