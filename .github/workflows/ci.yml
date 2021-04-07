@@ -17,12 +17,6 @@ jobs:
       with:
         node-version: '12'
     - run: npm ci
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: |
-        echo "$GITHUB_CONTEXT"
-        echo ${{ github.event.pull_request.title }}
     - run: npm test
       if: env.CS_PROJECT_ACCESS_TOKEN == null
       env:
