@@ -28,6 +28,9 @@ if [ -z "$COMMIT_BRANCH" ]; then
   echo "COMMIT_BRANCH set to current HEAD ($COMMIT_BRANCH)"
 fi
 
+# Strip "refs/heads/" when it's a github ref
+COMMIT_BRANCH="${COMMIT_BRANCH#refs\/heads\/}"
+
 set -x
 curl \
   --location --silent \
