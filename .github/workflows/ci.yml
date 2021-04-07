@@ -33,7 +33,5 @@ jobs:
       env:
           CS_PROJECT_ACCESS_TOKEN: ${{ secrets.CS_PROJECT_ACCESS_TOKEN }}
           REPOSITORY_NAME: ${{ github.repository }}
-          COMMIT_SHA: ${{ github.sha }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           COMMIT_BRANCH: ${{ github.head_ref }}
-          PULL_REQUEST_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-          TRY_SOMETHING_SHA: ${{ github.event.pull_request.head.sha || github.sha }}

@@ -16,12 +16,6 @@ fi
 
 [ $fail == 1 ] && exit 1
 
-echo "TRY_SOMETHING_SHA = $TRY_SOMETHING_SHA"
-
-if [ -n "$PULL_REQUEST_HEAD_SHA" ]; then
-  export COMMIT_SHA="$PULL_REQUEST_HEAD_SHA"
-fi
-
 if [ -z "$COMMIT_SHA" ]; then
   echo "Warning: missing COMMIT_SHA from CucumberStudio project to push results"
   export COMMIT_SHA=$(git rev-parse HEAD)
@@ -38,7 +32,7 @@ set -x
 curl \
   --request POST \
   https://studio.cucumber.io/cucumber_project/results \
-  ---form messages=@messages.ndjson \
+  --form messages=@messages.ndjson \
   --header "project-access-token: $CS_PROJECT_ACCESS_TOKEN" \
   --header "provider: github" \
   --header "repo: $REPOSITORY_NAME" \
