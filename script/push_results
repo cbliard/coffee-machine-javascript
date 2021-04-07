@@ -16,32 +16,34 @@ fi
 
 [ $fail == 1 ] && exit 1
 
-if [ -z "$COMMIT_HASH" ]; then
-  echo "Warning: missing COMMIT_HASH from CucumberStudio project to push results"
-  export COMMIT_HASH=$(git rev-parse HEAD)
-  echo "COMMIT_HASH set to current HEAD ($COMMIT_HASH)"
+echo "TRY_SOMETHING_SHA = $TRY_SOMETHING_SHA"
+
+if [ -n "$PULL_REQUEST_HEAD_SHA" ]; then
+  export COMMIT_SHA="$PULL_REQUEST_HEAD_SHA"
 fi
 
-if [ -z "$COMMIT_BRANCH" -a -n "$GITHUB_REF" ]; then
-  export COMMIT_BRANCH="${GITHUB_REF##*/}"
+if [ -z "$COMMIT_SHA" ]; then
+  echo "Warning: missing COMMIT_SHA from CucumberStudio project to push results"
+  export COMMIT_SHA=$(git rev-parse HEAD)
+  echo "COMMIT_SHA set to current HEAD ($COMMIT_SHA)"
 fi
 
 if [ -z "$COMMIT_BRANCH" ]; then
   echo "Warning: missing COMMIT_BRANCH from CucumberStudio project to push results"
-  export COMMIT_BRANCH=$(git rev-parse --abbrev-ref $COMMIT_HASH)
+  export COMMIT_BRANCH=$(git rev-parse --abbrev-ref $COMMIT_SHA)
   echo "COMMIT_BRANCH set to current HEAD ($COMMIT_BRANCH)"
 fi
 
 set -x
 curl \
-  -X POST \
+  --request POST \
   https://studio.cucumber.io/cucumber_project/results \
-  -F messages=@messages.ndjson \
-  -H "project-access-token: $CS_PROJECT_ACCESS_TOKEN" \
-  -H "provider: github" \
-  -H "repo: $REPOSITORY_NAME" \
-  -H "branch: $COMMIT_BRANCH" \
-  -H "revision: $COMMIT_HASH"
+  ---form messages=@messages.ndjson \
+  --header "project-access-token: $CS_PROJECT_ACCESS_TOKEN" \
+  --header "provider: github" \
+  --header "repo: $REPOSITORY_NAME" \
+  --header "branch: $COMMIT_BRANCH" \
+  --header "revision: $COMMIT_SHA"
 { set +x; } 2>/dev/null
 echo
 
