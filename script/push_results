@@ -30,7 +30,7 @@ fi
 
 set -x
 curl \
-  --silent \
+  --location --silent \
   --request POST \
   https://studio.cucumber.io/cucumber_project/results \
   --form messages=@messages.ndjson \
