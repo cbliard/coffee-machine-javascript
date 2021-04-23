@@ -26,12 +26,21 @@ Then(/^coffee should be served$/, function (callback) {
     callback();
 });
 
+Then('cappucino should be served', function () {
+    assert.equal(true, this.coffeeMachine.get('coffeeServed'));
+});
+
 Then(/^coffee should not be served$/, function (callback) {
     assert.equal(false, this.coffeeMachine.get('coffeeServed'));
     callback();
 });
 
 When(/^I take a coffee$/, function (callback) {
+    this.coffeeMachine.takeCoffee();
+    callback();
+});
+
+When('I take a cappucino', function (callback) {
     this.coffeeMachine.takeCoffee();
     callback();
 });
