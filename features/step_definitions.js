@@ -41,6 +41,7 @@ When(/^I take a coffee$/, function (callback) {
 });
 
 When('I take a cappucino', function () {
+    this.coffeeMachine.takeCoffee();
 });
 
 When(/^I empty the coffee grounds$/, function (callback) {
