@@ -40,9 +40,7 @@ When(/^I take a coffee$/, function (callback) {
     callback();
 });
 
-When('I take a cappucino', function (callback) {
-    this.coffeeMachine.takeCoffee();
-    callback();
+When('I take a cappucino', function () {
 });
 
 When(/^I empty the coffee grounds$/, function (callback) {
