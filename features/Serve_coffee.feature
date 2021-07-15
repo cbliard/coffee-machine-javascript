@@ -8,4 +8,9 @@ Feature: Serve coffee
     Given the coffee machine is started
     When I take a coffee
     Then coffee should be served
-    
+
+  Scenario: Simple use again
+    # Well, sometimes, you just get a coffee.
+    Given the coffee machine is started
+    When I take a coffee
+    Then coffee should be served
